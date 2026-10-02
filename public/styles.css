@@ -895,10 +895,16 @@ h3 {
   margin-bottom: clamp(72px, 10vw, 120px);
 }
 
-@media (min-width: 800px) {
+@media (min-width: 700px) {
   .work-index {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 28px;
+    gap: 24px;
+  }
+}
+
+@media (min-width: 1000px) {
+  .work-index {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
 
@@ -2666,6 +2672,201 @@ html:not(.js) .stage-ctrl {
   80%, 100% { transform: scale(2.6); opacity: 0; }
 }
 
+
+/* ホームページ制作：目次カードの図 */
+.work-card__media--web {
+  background: linear-gradient(140deg, #eef4fa, #d3e3f2);
+}
+
+.mini-site {
+  display: grid;
+  gap: 8px;
+  width: 62%;
+  padding: 10px;
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 0 14px 30px rgba(10, 20, 38, 0.14);
+}
+
+.mini-site__nav,
+.mini-site__cards {
+  display: flex;
+  gap: 6px;
+}
+
+.mini-site__nav i {
+  height: 6px;
+  flex: 1;
+  border-radius: 3px;
+  background: var(--line);
+}
+
+.mini-site__nav i:first-child {
+  flex: 2;
+  background: var(--navy);
+}
+
+.mini-site__hero {
+  display: grid;
+  align-content: center;
+  gap: 6px;
+  height: 52px;
+  padding: 0 12px;
+  border-radius: 6px;
+  background: linear-gradient(120deg, var(--navy), var(--blue));
+}
+
+.mini-site__hero i {
+  height: 6px;
+  width: 60%;
+  border-radius: 3px;
+  background: rgba(255, 255, 255, 0.85);
+}
+
+.mini-site__hero i + i {
+  width: 38%;
+  background: rgba(255, 255, 255, 0.45);
+}
+
+.mini-site__cards i {
+  flex: 1;
+  height: 30px;
+  border-radius: 5px;
+  background: var(--sky-pale);
+}
+
+/* ホームページ制作：詳細の図 */
+.site-visual {
+  position: relative;
+  padding: 7% 7% 11%;
+  border-radius: var(--radius);
+  background: linear-gradient(150deg, #edf3fa, #d6e5f3);
+  overflow: hidden;
+}
+
+.site-visual__browser {
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 18px 36px rgba(10, 20, 38, 0.14);
+}
+
+.site-visual__bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--line);
+  font-family: var(--font-en);
+  font-size: 0.75rem;
+}
+
+.site-visual__url {
+  flex: 1;
+  padding: 2px 10px;
+  border-radius: 999px;
+  background: var(--paper);
+  color: var(--text-sub);
+}
+
+.site-visual__page {
+  display: grid;
+  gap: 10px;
+  padding: 12px;
+}
+
+.site-visual__nav {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.site-visual__nav b {
+  width: 26%;
+  height: 9px;
+  margin-right: auto;
+  border-radius: 4px;
+  background: var(--navy);
+}
+
+.site-visual__nav i {
+  width: 9%;
+  height: 6px;
+  border-radius: 3px;
+  background: var(--line);
+}
+
+.site-visual__hero {
+  display: grid;
+  align-content: center;
+  gap: 8px;
+  min-height: 78px;
+  padding: 0 16px;
+  border-radius: 8px;
+  background: linear-gradient(120deg, var(--navy), var(--blue));
+}
+
+.site-visual__hero i {
+  width: 58%;
+  height: 8px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.88);
+}
+
+.site-visual__hero i + i {
+  width: 40%;
+  background: rgba(255, 255, 255, 0.45);
+}
+
+.site-visual__hero em {
+  width: 22%;
+  height: 14px;
+  border-radius: 999px;
+  background: var(--sky);
+}
+
+.site-visual__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.site-visual__grid i {
+  height: 34px;
+  border-radius: 6px;
+  background: var(--sky-pale);
+}
+
+.site-visual__caption {
+  position: absolute;
+  right: 14px;
+  bottom: 10px;
+  color: #6d7a8e;
+  font-size: 0.6875rem;
+}
+
+@media screen and (prefers-reduced-motion: no-preference) {
+  .anim .site-visual.is-playing .site-visual__grid i {
+    animation: tile-glow 3.6s ease-in-out infinite;
+  }
+
+  .anim .site-visual.is-playing .site-visual__grid i:nth-child(2) { animation-delay: 0.3s; }
+  .anim .site-visual.is-playing .site-visual__grid i:nth-child(3) { animation-delay: 0.6s; }
+  .anim .site-visual.is-playing .site-visual__grid i:nth-child(4) { animation-delay: 0.9s; }
+  .anim .site-visual.is-playing .site-visual__grid i:nth-child(5) { animation-delay: 1.2s; }
+  .anim .site-visual.is-playing .site-visual__grid i:nth-child(6) { animation-delay: 1.5s; }
+
+  .anim .site-visual.is-playing .site-visual__hero em {
+    animation: pulse 2.4s ease-in-out infinite;
+  }
+}
+
+@keyframes tile-glow {
+  0%, 40%, 100% { background: var(--sky-pale); }
+  15%, 25% { background: #c7dcf1; }
+}
+
 /* ---------- 動きを減らす設定 ---------- */
 
 @media (prefers-reduced-motion: reduce) {
@@ -2884,6 +3085,10 @@ html:not(.js) .stage-ctrl {
   .stage[data-state] .tile {
     opacity: 1 !important;
     transform: none !important;
+  }
+
+  .site-visual {
+    break-inside: avoid;
   }
 
   .case__top {

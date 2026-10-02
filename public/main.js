@@ -236,6 +236,10 @@
     window.addEventListener("beforeprint", function () { stopAuto(); setState(2); });
   }
 
+  /* ---------- ホームページの図：表示中だけ動かす ---------- */
+  var siteVisual = document.querySelector(".site-visual");
+  whileVisible(siteVisual, function () { siteVisual.classList.add("is-playing"); }, function () { siteVisual.classList.remove("is-playing"); });
+
   /* ---------- 管工事の図：表示中だけ動かす ---------- */
   var caseVisual = document.querySelector(".case-visual");
   whileVisible(caseVisual, function () { caseVisual.classList.add("is-playing"); }, function () { caseVisual.classList.remove("is-playing"); });
