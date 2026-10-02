@@ -66,6 +66,7 @@
       <nav class="site-nav" id="site-nav" aria-label="ページ内リンク">
         <ul>
           <li><a href="#about">自己紹介</a></li>
+          <li><a href="#career">経歴</a></li>
           <li><a href="#works">実績</a></li>
         </ul>
       </nav>
@@ -143,25 +144,30 @@
       </div>
     </div>
 
-    <!-- 2. 自己紹介 -->
+    <!-- 2. About -->
     <section class="section" id="about" aria-labelledby="about-title">
       <div class="container">
         <header class="section-head">
           <p class="eyebrow" data-anim="fade"><span class="eyebrow__num">01</span>About</p>
-          <h2 class="section-title" id="about-title" data-anim="up"><span class="line"><span class="line__in">自己紹介</span></span></h2>
+          <h2 class="section-title" id="about-title" data-anim="up">自己紹介</h2>
         </header>
 
         <div class="about">
           <div class="about__text prose" data-anim="up">
-            <p>2024年2月から株式会社システマックに勤務しています。仕事とは別に、個人で企業のホームページや業務アプリを制作してきました。</p>
-            <p>制作では、AIを活用しながら、課題の整理から実装、公開後の改善までを一つの流れとして取り組んでいます。既存のお客様から、ホームページ制作に加えて「業務をデジタル化したい」と相談を受けたこともあります。</p>
-            <p>お客様の困りごとを聞いて整理し、解決策を形にするまでに取り組んできた経験を、営業職としてお客様の課題に向き合う仕事に活かしたいと考えています。</p>
+            <p class="about__lead"><span class="phrase">現場を知る人間として、</span><br class="br-wide"><span class="phrase">技術で課題を解き、</span><br class="br-wide"><span class="phrase">自分で形にして届ける。</span></p>
+            <p>2002年生まれ、滋賀県在住。建設現場での仕事を経て、2024年2月から株式会社システマックで機械設備のメンテナンスを担当しています。</p>
+            <p>業務改善のために在庫管理などの社内システムを自ら企画・開発する一方、勤務外でも独学でWeb開発を始めました。現在は個人で、顧客向けのWebサイト制作と、現場業務を効率化する業務システム・SaaSの企画・開発に取り組んでいます。</p>
+            <p>コードを書くことだけでなく、課題を見つけ、提案し、形にして届け、使ってもらいながら改善する。その一連の流れを、個人の活動の中で経験しています。</p>
           </div>
 
           <dl class="profile" aria-label="プロフィール" data-anim-group="right">
             <div class="profile__row">
               <dt>氏名</dt>
               <dd>山本 真樹</dd>
+            </div>
+            <div class="profile__row">
+              <dt>生まれ</dt>
+              <dd>2002年</dd>
             </div>
             <div class="profile__row">
               <dt>居住地</dt>
@@ -173,46 +179,147 @@
             </div>
             <div class="profile__row">
               <dt>個人の活動</dt>
-              <dd>企業ホームページ・業務アプリの制作</dd>
+              <dd>Webサイト制作、業務システム・SaaSの企画・開発</dd>
             </div>
           </dl>
         </div>
 
-        <h3 class="sub-title" data-anim="up">取り組み方</h3>
-        <ol class="flow" aria-label="課題解決の進め方" data-anim-group="up">
-          <li class="flow__step">
-            <span class="flow__icon" aria-hidden="true"><svg class="icon"><use href="#i-chat"/></svg></span>
-            <span class="flow__num">STEP 1</span>
-            <span class="flow__name">聞く</span>
-            <span class="flow__desc">困りごとや今の業務のやり方を聞く</span>
+        <!-- 3つの軸 -->
+        <ul class="pillars" aria-label="3つの軸" data-anim-group="up">
+          <li class="pillar">
+            <span class="pillar__num" aria-hidden="true">01</span>
+            <p class="pillar__en">FIELD</p>
+            <h3 class="pillar__title">現場経験</h3>
+            <p class="pillar__text">建設現場（送電線工事・基礎工事など）と、機械設備のメンテナンスの実務を経験。机上ではなく、現場で働く人の業務や課題を実感として知っています。</p>
           </li>
-          <li class="flow__step">
-            <span class="flow__icon" aria-hidden="true"><svg class="icon"><use href="#i-sort"/></svg></span>
-            <span class="flow__num">STEP 2</span>
-            <span class="flow__name">整理する</span>
-            <span class="flow__desc">何が課題で、何が必要かを分ける</span>
+          <li class="pillar">
+            <span class="pillar__num" aria-hidden="true">02</span>
+            <p class="pillar__en">TECHNOLOGY</p>
+            <h3 class="pillar__title">技術・開発</h3>
+            <p class="pillar__text">在庫管理などの社内システム、顧客向けWebサイト、業務システム、現場管理系SaaS。必要な技術を学びながら、実際に動くものとして形にしてきました。</p>
           </li>
-          <li class="flow__step">
-            <span class="flow__icon" aria-hidden="true"><svg class="icon"><use href="#i-build"/></svg></span>
-            <span class="flow__num">STEP 3</span>
-            <span class="flow__name">形にする</span>
-            <span class="flow__desc">AIとWeb技術で、動く仕組みにする</span>
+          <li class="pillar">
+            <span class="pillar__num" aria-hidden="true">03</span>
+            <p class="pillar__en">CUSTOMER</p>
+            <h3 class="pillar__title">顧客に届ける視点</h3>
+            <p class="pillar__text">個人のWeb制作・システム開発で、顧客の獲得からヒアリング、提案、企画、制作・開発、納品、運用、改善までを一人で経験しています。</p>
           </li>
-          <li class="flow__step">
-            <span class="flow__icon" aria-hidden="true"><svg class="icon"><use href="#i-loop"/></svg></span>
-            <span class="flow__num">STEP 4</span>
-            <span class="flow__name">改善する</span>
-            <span class="flow__desc">使い方に合わせて直していく</span>
-          </li>
-        </ol>
+        </ul>
+
+        <!-- 個人の活動で回しているサイクル -->
+        <div class="cycle" data-anim="up">
+          <h3 class="sub-title">プロダクトを届けるまでのサイクル</h3>
+          <p class="cycle__note">個人の活動の中で、この流れを一人で回しています。</p>
+          <ol class="cycle__list">
+            <li><span class="cycle__num">01</span>課題発見</li>
+            <li><span class="cycle__num">02</span>企画</li>
+            <li><span class="cycle__num">03</span>営業・提案</li>
+            <li><span class="cycle__num">04</span>設計</li>
+            <li><span class="cycle__num">05</span>開発</li>
+            <li><span class="cycle__num">06</span>リリース</li>
+            <li><span class="cycle__num">07</span>フィードバック</li>
+            <li><span class="cycle__num">08</span>改善</li>
+          </ol>
+        </div>
       </div>
     </section>
 
-    <!-- 3. 実績紹介 -->
+    <!-- 3. Career -->
+    <section class="section section--dark section--career" id="career" aria-labelledby="career-title">
+      <div class="section__bg" aria-hidden="true"></div>
+      <div class="container">
+        <header class="section-head">
+          <p class="eyebrow" data-anim="fade"><span class="eyebrow__num">02</span>Career</p>
+          <h2 class="section-title" id="career-title" data-anim="up">経歴</h2>
+          <p class="section-lead career__lead" data-anim="fade">現場を知る → ITで改善する → 自分でサービスをつくり、顧客に届ける。</p>
+        </header>
+
+        <div class="timeline" id="timeline">
+          <span class="timeline__track" aria-hidden="true"><span class="timeline__fill"></span></span>
+          <ol class="timeline__list">
+
+          <li class="tl" data-anim="up"><span class="tl__dot" aria-hidden="true"></span>
+            <div class="tl__when"><span class="tl__big" data-parallax>2002</span></div>
+            <div class="tl__body">
+              <h3 class="tl__title">Born</h3>
+              <p class="tl__text">2002年生まれ。</p>
+            </div>
+          </li>
+
+          <li class="tl" data-anim="up"><span class="tl__dot" aria-hidden="true"></span>
+            <div class="tl__when"><span class="tl__big tl__big--ja" data-parallax>小学2年<br>〜高校</span></div>
+            <div class="tl__body">
+              <h3 class="tl__title">Baseball</h3>
+              <p class="tl__text">小学2年生から高校まで野球を継続。比叡山高等学校へ野球の特待で入学しました。長い競技生活を通じて、継続して取り組む力、チームで成果を出す姿勢、目標から逆算して努力する習慣を身につけました。</p>
+              <ul class="tl__tags"><li>Discipline</li><li>Teamwork</li><li>Persistence</li></ul>
+            </div>
+          </li>
+
+          <li class="tl" data-anim="up"><span class="tl__dot" aria-hidden="true"></span>
+            <div class="tl__when"><span class="tl__big tl__big--ja" data-parallax>高校<br>卒業後</span></div>
+            <div class="tl__body">
+              <h3 class="tl__title">Construction</h3>
+              <p class="tl__text">父が営む建設業に就職。送電線工事・基礎工事などの現場に携わり、施工現場の業務フロー、職人同士の連携、安全や工程を意識して仕事を進める大切さを学びました。</p>
+              <ul class="tl__tags"><li>Field Experience</li><li>Construction</li><li>Teamwork</li></ul>
+            </div>
+          </li>
+
+          <li class="tl" data-anim="up"><span class="tl__dot" aria-hidden="true"></span>
+            <div class="tl__when"><span class="tl__big" data-parallax>2024.02<small>〜</small></span></div>
+            <div class="tl__body">
+              <h3 class="tl__title">SYSTEMAC</h3>
+              <p class="tl__text">株式会社システマックへ入社。機械設備のメンテナンスを担当しながら、業務改善のため、在庫管理などの社内システムを自ら企画・開発しました。</p>
+              <ul class="tl__tags"><li>Maintenance</li><li>Internal Systems</li><li>Process Improvement</li></ul>
+            </div>
+          </li>
+
+          <li class="tl" data-anim="up"><span class="tl__dot" aria-hidden="true"></span>
+            <div class="tl__when"><span class="tl__big tl__big--label" data-parallax>Side<br>Projects</span></div>
+            <div class="tl__body">
+              <h3 class="tl__title">Web Development</h3>
+              <p class="tl__text">ソフトウェア開発をより深く経験するため、勤務外で独学によるWeb開発・システム開発を開始。個人で実際の顧客に向けたWebサイト制作を始め、ヒアリング・企画・提案・見積・Webデザイン・開発・公開・運用・改善までを一人で担当しています。</p>
+              <ul class="tl__tags"><li>Web Development</li><li>Client Work</li><li>Sales</li></ul>
+              <a class="tl__link" href="#work-web">関連する実績：株式会社アルファ管工 ホームページ<svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+            </div>
+          </li>
+
+          <li class="tl" data-anim="up"><span class="tl__dot" aria-hidden="true"></span>
+            <div class="tl__when"><span class="tl__big tl__big--label" data-parallax>Product</span></div>
+            <div class="tl__body">
+              <h3 class="tl__title">SaaS / Business Systems</h3>
+              <p class="tl__text">建設現場での経験を活かし、現場管理をはじめとした業務システム・SaaSを企画・開発。企画、営業、開発、顧客からのフィードバック、改善までのPDCAを、個人で回しています。</p>
+              <ul class="tl__tags"><li>SaaS</li><li>Product Development</li><li>PDCA</li><li>Customer Problem Solving</li></ul>
+              <div class="tl__links">
+                <a class="tl__link" href="#work-kenbei">関連する実績：KENBEI<svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+                <a class="tl__link" href="#work-pipe">関連する実績：管工事会社向けの業務アプリ<svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+              </div>
+            </div>
+          </li>
+          </ol>
+        </div>
+
+        <!-- キャリアを一言で -->
+        <div class="statement" id="statement">
+          <p class="statement__words" aria-label="FIELD、TECHNOLOGY、PRODUCT、CUSTOMER">
+            <span class="statement__row" aria-hidden="true"><span class="statement__word">FIELD</span><span class="statement__ja">現場を知る</span></span>
+            <span class="statement__arrow" aria-hidden="true">↓</span>
+            <span class="statement__row" aria-hidden="true"><span class="statement__word">TECHNOLOGY</span><span class="statement__ja">技術を学ぶ</span></span>
+            <span class="statement__arrow" aria-hidden="true">↓</span>
+            <span class="statement__row" aria-hidden="true"><span class="statement__word">PRODUCT</span><span class="statement__ja">自らつくる</span></span>
+            <span class="statement__arrow" aria-hidden="true">↓</span>
+            <span class="statement__row" aria-hidden="true"><span class="statement__word">CUSTOMER</span><span class="statement__ja">顧客に届ける</span></span>
+          </p>
+          <p class="statement__message"><span class="phrase">現場で課題を知り、</span><span class="phrase">技術を学び、</span><br class="br-wide"><span class="phrase">自らプロダクトをつくり、</span><span class="phrase">顧客に届ける。</span></p>
+          <a class="statement__cta" href="#works">そのプロダクトを見る<svg class="icon" aria-hidden="true"><use href="#i-down"/></svg></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. 実績紹介 -->
     <section class="section section--works" id="works" aria-labelledby="works-title">
       <div class="container">
         <header class="section-head">
-          <p class="eyebrow" data-anim="fade"><span class="eyebrow__num">02</span>Works</p>
+          <p class="eyebrow" data-anim="fade"><span class="eyebrow__num">03</span>Works</p>
           <h2 class="section-title" id="works-title" data-anim="up"><span class="line"><span class="line__in">実績紹介</span></span></h2>
         </header>
 

@@ -13,12 +13,43 @@
   if (motion) root.classList.add("anim");
   window.__motionReady = true;
 
+  /* ---------- 経歴：線の伸び・通過したポイント・年号のゆるやかな視差 ---------- */
+  var timeline = document.getElementById("timeline");
+  var tlFill = timeline ? timeline.querySelector(".timeline__fill") : null;
+  var tlItems = timeline ? Array.prototype.slice.call(timeline.querySelectorAll(".tl")) : [];
+  var parallaxEls = Array.prototype.slice.call(document.querySelectorAll("[data-parallax]"));
+  var wideMq = window.matchMedia("(min-width: 768px)");
+
+  function updateCareer() {
+    if (!timeline || !motion) return;
+    var vh = window.innerHeight;
+    var center = vh * 0.55;
+    var rect = timeline.getBoundingClientRect();
+    var progress = rect.height > 0 ? (center - rect.top) / rect.height : 0;
+    progress = Math.max(0, Math.min(1, progress));
+    if (tlFill) tlFill.style.transform = "scaleY(" + progress.toFixed(4) + ")";
+    tlItems.forEach(function (item) {
+      item.classList.toggle("is-active", item.getBoundingClientRect().top < center);
+    });
+    if (wideMq.matches) {
+      parallaxEls.forEach(function (el) {
+        var r = el.parentElement.getBoundingClientRect();
+        var offset = (r.top + r.height / 2 - vh / 2) * -0.06;
+        offset = Math.max(-28, Math.min(28, offset));
+        el.style.transform = "translateY(" + offset.toFixed(1) + "px)";
+      });
+    } else {
+      parallaxEls.forEach(function (el) { el.style.transform = ""; });
+    }
+  }
+
   /* ---------- ヘッダーの状態と進捗バー ---------- */
   var bar = document.querySelector(".progress__bar");
   var ticking = false;
 
   function onScroll() {
     ticking = false;
+    updateCareer();
     header.classList.toggle("is-scrolled", window.scrollY > 24);
     if (bar) {
       var max = root.scrollHeight - root.clientHeight;
@@ -70,7 +101,7 @@
         if (link) link.setAttribute("aria-current", "true");
       });
     }, { rootMargin: "-40% 0px -55% 0px" });
-    ["top", "point"].concat(Object.keys(byId)).forEach(function (id) {
+    ["top"].concat(Object.keys(byId)).forEach(function (id) {
       var el = document.getElementById(id);
       if (el) navIo.observe(el);
     });
@@ -132,6 +163,25 @@
         if (el.getBoundingClientRect().top < window.innerHeight) show(el);
       });
     }, 1500);
+  }
+
+  var statement = document.getElementById("statement");
+  if (statement) {
+    if (motion) {
+      var stIo = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting || entry.boundingClientRect.top < 0) {
+            statement.classList.add("is-in");
+            stIo.disconnect();
+          }
+        });
+      }, { rootMargin: "0px 0px -15% 0px", threshold: 0 });
+      stIo.observe(statement);
+      setInterval(function () {
+        if (statement.getBoundingClientRect().top < window.innerHeight * 0.9) statement.classList.add("is-in");
+      }, 1500);
+    }
+    window.addEventListener("beforeprint", function () { statement.classList.add("is-in"); });
   }
 
   window.addEventListener("beforeprint", showAll);
