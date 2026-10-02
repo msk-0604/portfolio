@@ -8,7 +8,8 @@
 ```
 public/
   index.html   ページ本体（タイトル・説明文・OGP を含む）
-  styles.css   スタイル（スマホ / PC / 印刷）
+  styles.css   スタイル（スマホ / PC / 印刷、アニメーション）
+  main.js      スクロール表示・進捗バー・ナビの現在地（JSなしでも全文表示）
   favicon.svg
 scripts/
   check.mjs    公開前チェック（リンク切れ・空リンク・仮文言・title/description）
@@ -33,5 +34,6 @@ CLI の場合は、このディレクトリで `npx vercel` → `npx vercel --pr
 
 ## 内容を更新するとき
 
+- アニメーションは、OS の「視差効果を減らす」設定がオンの場合と、印刷時には停止します。
 - 文章はすべて `public/index.html` にあります。
 - 未確認の実績・数字・効果は掲載しない方針です。追加する場合は、事実と掲載許可を確認してから追記してください。
