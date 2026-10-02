@@ -1,0 +1,11 @@
+{
+  "name": "yamamoto-maki-portfolio",
+  "version": "1.0.0",
+  "private": true,
+  "description": "山本真樹 営業職応募ポートフォリオ（静的サイト）",
+  "scripts": {
+    "build": "node scripts/check.mjs",
+    "check": "node scripts/check.mjs",
+    "dev": "npx --yes serve public -l 3000"
+  }
+}
