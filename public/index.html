@@ -18,7 +18,16 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap">
   <link rel="stylesheet" href="styles.css">
-  <script>document.documentElement.classList.add("js");</script>
+  <script>
+    // 動きを使える環境だけ .anim を付ける。main.js が 4 秒以内に動かなければ外して、全文を表示する
+    (function (d) {
+      d.classList.add("js");
+      if ("IntersectionObserver" in window && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        d.classList.add("anim");
+        setTimeout(function () { if (!window.__motionReady) d.classList.remove("anim"); }, 4000);
+      }
+    })(document.documentElement);
+  </script>
   <script src="main.js" defer></script>
 </head>
 <body>
@@ -40,10 +49,12 @@
     <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
     <symbol id="i-down" viewBox="0 0 24 24"><path d="M12 5v14M6 13l6 6 6-6"/></symbol>
     <symbol id="i-external" viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9"/><path d="M18 14v6H4V6h6"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></symbol>
     <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 10h16M9 3v4M15 3v4"/></symbol>
   </svg>
 
   <a class="skip-link" href="#main">本文へ移動</a>
+  <div class="progress" aria-hidden="true"><span class="progress__bar"></span></div>
 
   <header class="site-header" id="site-header">
     <div class="container site-header__inner">
@@ -80,44 +91,96 @@
 
       <div class="container hero__inner">
         <div class="hero__content">
-          <p class="hero__label">営業職応募ポートフォリオ</p>
+          <p class="hero__label" data-intro="1">営業職応募ポートフォリオ</p>
           <h1 class="hero__title" id="hero-title">
-            <span class="line"><span class="line__in">顧客の課題を、</span></span>
-            <span class="line"><span class="line__in">提案から</span></span>
-            <span class="line"><span class="line__in hero__accent">仕組みづくりまで。</span></span>
+            <span class="line" data-intro="2"><span class="line__in">顧客の課題を、</span></span>
+            <span class="line" data-intro="3"><span class="line__in">提案から</span></span>
+            <span class="line" data-intro="4"><span class="line__in hero__accent">仕組みづくりまで。</span></span>
           </h1>
-          <div class="hero__meta">
+          <div class="hero__meta" data-intro="5">
             <p class="hero__name">山本 真樹<span class="hero__name-sub">滋賀県在住</span></p>
             <p class="hero__lead">お客様の困りごとを聞き、整理し、AIとWeb技術を使って解決策を形にする。これまでの取り組みと、営業職で活かしたいことをまとめました。</p>
           </div>
-          <div class="hero__actions">
+          <div class="hero__actions" data-intro="6">
             <a class="button" href="#works">実績を見る<svg class="icon" aria-hidden="true"><use href="#i-down"/></svg></a>
             <a class="text-button" href="#about">自己紹介へ<svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
           </div>
         </div>
 
-        <!-- 課題 → 提案 → 仕組み の図 -->
-        <figure class="hero__visual" aria-hidden="true">
-          <svg class="orbit" viewBox="0 0 420 400" focusable="false">
-            <defs>
-              <linearGradient id="g-line" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0" stop-color="#7fb2e5"/>
-                <stop offset="1" stop-color="#ffffff"/>
-              </linearGradient>
-            </defs>
-            <g class="orbit__rings">
-              <circle cx="210" cy="200" r="172"/>
-              <circle cx="210" cy="200" r="120"/>
-            </g>
-            <path class="orbit__line" d="M110 92 C 200 92, 300 120, 336 200"/>
-            <path class="orbit__line orbit__line--2" d="M336 200 C 300 290, 200 312, 110 308"/>
-            <path class="orbit__line orbit__line--3" d="M110 308 C 60 250, 60 150, 110 92"/>
-          </svg>
-          <div class="orbit-node orbit-node--1"><svg class="icon"><use href="#i-chat"/></svg><span>課題を聞く</span></div>
-          <div class="orbit-node orbit-node--2"><svg class="icon"><use href="#i-bulb"/></svg><span>提案する</span></div>
-          <div class="orbit-node orbit-node--3"><svg class="icon"><use href="#i-build"/></svg><span>仕組みにする</span></div>
-          <div class="orbit-core"><span>AI</span><span class="orbit-core__x">×</span><span>Web</span></div>
+        <!-- 相談から仕組みづくりまでの流れ（管工事会社向け業務アプリの例） -->
+        <figure class="process" id="hero-process" data-step="done" data-intro="7" aria-label="相談から仕組みづくりまでの流れ。管工事会社向け業務アプリ（匿名の事例）の例">
+          <div class="process__head" aria-hidden="true">
+            <span class="process__dots"><i></i><i></i><i></i></span>
+            <span class="process__title">PROCESS</span>
+            <span class="process__state"><span class="process__pulse"></span><span class="process__state-text">進行中</span></span>
+          </div>
+          <ol class="process__steps">
+            <li class="process__step" data-p="1">
+              <span class="process__icon" aria-hidden="true"><svg class="icon"><use href="#i-chat"/></svg></span>
+              <span class="process__body"><span class="process__name">ヒアリング</span><span class="process__sub">紙の予定表と作業チェックシートの相談</span></span>
+              <span class="process__check" aria-hidden="true"><svg class="icon"><use href="#i-check"/></svg></span>
+            </li>
+            <li class="process__step" data-p="2">
+              <span class="process__icon" aria-hidden="true"><svg class="icon"><use href="#i-sort"/></svg></span>
+              <span class="process__body"><span class="process__name">整理・提案</span><span class="process__sub">予定確認・進捗チェック・写真共有に整理</span></span>
+              <span class="process__check" aria-hidden="true"><svg class="icon"><use href="#i-check"/></svg></span>
+            </li>
+            <li class="process__step" data-p="3">
+              <span class="process__icon" aria-hidden="true"><svg class="icon"><use href="#i-build"/></svg></span>
+              <span class="process__body"><span class="process__name">形にする</span><span class="process__sub">業務アプリとして制作（試用予定）</span></span>
+              <span class="process__check" aria-hidden="true"><svg class="icon"><use href="#i-check"/></svg></span>
+            </li>
+          </ol>
+          <div class="process__bar" aria-hidden="true"><span></span></div>
+          <figcaption class="process__cap">管工事会社向け業務アプリ（匿名の事例）の流れ</figcaption>
         </figure>
+      </div>
+    </section>
+
+    <!-- キーワードの帯 -->
+    <div class="ticker" aria-hidden="true">
+      <div class="ticker__track">
+        <div class="ticker__group"><span>ヒアリング</span><span>課題整理</span><span>分かりやすい提案</span><span>業務改善</span><span>AI活用</span><span>Web制作</span><span>業務アプリ</span></div>
+        <div class="ticker__group"><span>ヒアリング</span><span>課題整理</span><span>分かりやすい提案</span><span>業務改善</span><span>AI活用</span><span>Web制作</span><span>業務アプリ</span></div>
+      </div>
+    </div>
+
+    <!-- 要点 -->
+    <section class="section section--point" id="point" aria-labelledby="point-title">
+      <div class="container">
+        <header class="section-head">
+          <p class="eyebrow" data-anim="fade"><span class="eyebrow__num">00</span>Point</p>
+          <h2 class="section-title" id="point-title" data-anim="up"><span class="phrase">採用ご担当者の方へ</span><span class="phrase">——3つの要点</span></h2>
+        </header>
+        <ul class="points" data-anim-group="up">
+          <li>
+            <a class="point" href="#work-pipe">
+              <span class="point__num">01</span>
+              <span class="point__icon" aria-hidden="true"><svg class="icon"><use href="#i-chat"/></svg></span>
+              <span class="point__title"><span class="phrase">相談を受け、</span><span class="phrase">形にした経験</span></span>
+              <span class="point__text">管工事会社から紙の予定表とチェックシートのデジタル化を相談され、業務アプリを制作しました（試用予定）。</span>
+              <span class="point__more">事例を見る<svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></span>
+            </a>
+          </li>
+          <li>
+            <a class="point" href="#work-kenbei">
+              <span class="point__num">02</span>
+              <span class="point__icon" aria-hidden="true"><svg class="icon"><use href="#i-site"/></svg></span>
+              <span class="point__title"><span class="phrase">建設現場向けサービスを</span><span class="phrase">開発・公開</span></span>
+              <span class="point__text">現場・写真・作業・進捗・日報をまとめて管理する「KENBEI」を公開し、改善を続けています。</span>
+              <span class="point__more">KENBEIを見る<svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></span>
+            </a>
+          </li>
+          <li>
+            <a class="point" href="#strengths">
+              <span class="point__num">03</span>
+              <span class="point__icon" aria-hidden="true"><svg class="icon"><use href="#i-spark"/></svg></span>
+              <span class="point__title"><span class="phrase">AIで課題整理から</span><span class="phrase">実装まで</span></span>
+              <span class="point__text">AIを活用し、課題の整理から実装・改善まで取り組んでいます。営業職では提案内容の具体化に活かします。</span>
+              <span class="point__more">活かしたいことを見る<svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></span>
+            </a>
+          </li>
+        </ul>
       </div>
     </section>
 
@@ -125,18 +188,18 @@
     <section class="section" id="about" aria-labelledby="about-title">
       <div class="container">
         <header class="section-head">
-          <p class="eyebrow"><span class="eyebrow__num">01</span>About</p>
-          <h2 class="section-title" id="about-title"><span class="line"><span class="line__in">自己紹介</span></span></h2>
+          <p class="eyebrow" data-anim="fade"><span class="eyebrow__num">01</span>About</p>
+          <h2 class="section-title" id="about-title" data-anim="up"><span class="line"><span class="line__in">自己紹介</span></span></h2>
         </header>
 
         <div class="about">
-          <div class="about__text prose">
+          <div class="about__text prose" data-anim="up">
             <p>2024年2月から株式会社システマックに勤務しています。仕事とは別に、個人で企業のホームページや業務アプリを制作してきました。</p>
             <p>制作では、AIを活用しながら、課題の整理から実装、公開後の改善までを一つの流れとして取り組んでいます。既存のお客様から、ホームページ制作に加えて「業務をデジタル化したい」と相談を受けたこともあります。</p>
             <p>お客様の困りごとを聞いて整理し、解決策を形にするまでに取り組んできた経験を、営業職としてお客様の課題に向き合う仕事に活かしたいと考えています。</p>
           </div>
 
-          <dl class="profile" aria-label="プロフィール">
+          <dl class="profile" aria-label="プロフィール" data-anim-group="right">
             <div class="profile__row">
               <dt>氏名</dt>
               <dd>山本 真樹</dd>
@@ -156,8 +219,8 @@
           </dl>
         </div>
 
-        <h3 class="sub-title">取り組み方</h3>
-        <ol class="flow" aria-label="課題解決の進め方">
+        <h3 class="sub-title" data-anim="up">取り組み方</h3>
+        <ol class="flow" aria-label="課題解決の進め方" data-anim-group="up">
           <li class="flow__step">
             <span class="flow__icon" aria-hidden="true"><svg class="icon"><use href="#i-chat"/></svg></span>
             <span class="flow__num">STEP 1</span>
@@ -190,13 +253,13 @@
     <section class="section section--works" id="works" aria-labelledby="works-title">
       <div class="container">
         <header class="section-head">
-          <p class="eyebrow"><span class="eyebrow__num">02</span>Works</p>
-          <h2 class="section-title" id="works-title"><span class="line"><span class="line__in">実績紹介</span></span></h2>
-          <p class="section-lead">それぞれ「課題」「提案・制作したもの」「自分の担当」「現在の状況」の順にまとめています。効果がまだ確認できていないものは、成果として記載していません。</p>
+          <p class="eyebrow" data-anim="fade"><span class="eyebrow__num">02</span>Works</p>
+          <h2 class="section-title" id="works-title" data-anim="up"><span class="line"><span class="line__in">実績紹介</span></span></h2>
+          <p class="section-lead" data-anim="fade">それぞれ「課題」「提案・制作したもの」「自分の担当」「現在の状況」の順にまとめています。効果がまだ確認できていないものは、成果として記載していません。</p>
         </header>
 
         <!-- 実績の目次カード -->
-        <ul class="work-index" aria-label="実績一覧">
+        <ul class="work-index" aria-label="実績一覧" data-anim-group="up">
           <li>
             <a class="work-card" href="#work-kenbei">
               <span class="work-card__media work-card__media--kenbei" aria-hidden="true">
@@ -241,7 +304,7 @@
 
         <!-- KENBEI：固定した図と、スクロールで切り替わる説明 -->
         <article class="work story" id="work-kenbei" aria-labelledby="work-kenbei-title">
-          <header class="work__header">
+          <header class="work__header" data-anim="up">
             <p class="work__cat">自社開発サービス／建設業向け</p>
             <h3 class="work__title" id="work-kenbei-title">KENBEI</h3>
             <p class="work__summary">建設現場向けの管理サービス</p>
@@ -249,7 +312,7 @@
           </header>
 
           <div class="story__grid">
-            <div class="story__aside">
+            <div class="story__aside" data-anim="zoom">
               <figure class="stage" id="kenbei-stage" data-state="2" aria-label="現場・写真・作業・進捗・日報の情報をKENBEIでまとめて管理するイメージ図">
                 <div class="stage__frame">
                   <div class="stage__bar" aria-hidden="true">
@@ -278,11 +341,17 @@
                     <span>設計</span><svg class="icon"><use href="#i-arrow"/></svg><span>開発</span><svg class="icon"><use href="#i-arrow"/></svg><span>改善</span>
                   </div>
                 </div>
-                <figcaption class="stage__caption"><span class="stage__label" aria-hidden="true"></span>イメージ図（実際の画面ではありません）</figcaption>
+                <figcaption class="stage__caption">イメージ図（実際の画面ではありません）</figcaption>
+                <div class="stage-ctrl" role="group" aria-label="イメージ図の切り替え">
+                  <button type="button" class="stage-ctrl__btn" data-go="1" aria-pressed="false"><span class="stage-ctrl__num">01</span>課題</button>
+                  <button type="button" class="stage-ctrl__btn" data-go="2" aria-pressed="true"><span class="stage-ctrl__num">02</span>提案・制作</button>
+                  <button type="button" class="stage-ctrl__btn" data-go="3" aria-pressed="false"><span class="stage-ctrl__num">03</span>担当</button>
+                  <button type="button" class="stage-ctrl__btn" data-go="4" aria-pressed="false"><span class="stage-ctrl__num">04</span>現在</button>
+                </div>
               </figure>
             </div>
 
-            <dl class="story__steps">
+            <dl class="story__steps" data-anim-group="up">
               <div class="story__step" data-step="1">
                 <dt><span class="story__num">01</span>課題</dt>
                 <dd>建設現場では、現場ごとの写真・作業・進捗・日報といった情報を扱います。これらがばらばらになると、整理や報告に手間がかかります。</dd>
@@ -324,14 +393,14 @@
         <!-- 管工事会社向け業務アプリ -->
         <article class="work work--case" id="work-pipe" aria-labelledby="work-pipe-title">
           <div class="case__top">
-            <header class="work__header">
+            <header class="work__header" data-anim="up">
               <p class="work__cat">受託制作／匿名の事例</p>
               <h3 class="work__title" id="work-pipe-title"><span class="phrase">管工事会社向けの</span><span class="phrase">業務アプリ</span></h3>
               <p class="work__summary">紙の予定表とチェックシートのデジタル化</p>
               <p class="status status--plan"><span class="status__dot" aria-hidden="true"></span>試用予定</p>
             </header>
 
-            <figure class="case-visual" aria-label="紙の予定表とチェックシートを、スマートフォンで確認できるアプリに置き換えるイメージ図">
+            <figure class="case-visual" data-anim="zoom" aria-label="紙の予定表とチェックシートを、スマートフォンで確認できるアプリに置き換えるイメージ図">
               <div class="case-visual__paper" aria-hidden="true">
                 <span class="case-visual__ttl">予定表（紙）</span>
                 <i></i><i></i><i></i><i></i>
@@ -339,15 +408,15 @@
               <div class="case-visual__flow" aria-hidden="true"><svg class="icon"><use href="#i-arrow"/></svg></div>
               <div class="case-visual__phone" aria-hidden="true">
                 <span class="case-visual__notch"></span>
-                <span class="case-visual__row"><svg class="icon"><use href="#i-calendar"/></svg>担当者別の予定</span>
-                <span class="case-visual__row"><svg class="icon"><use href="#i-task"/></svg>進捗チェック</span>
-                <span class="case-visual__row"><svg class="icon"><use href="#i-camera"/></svg>写真の共有</span>
+                <span class="case-visual__row"><span class="case-visual__tick" aria-hidden="true"><svg class="icon"><use href="#i-check"/></svg></span>担当者別の予定</span>
+                <span class="case-visual__row"><span class="case-visual__tick" aria-hidden="true"><svg class="icon"><use href="#i-check"/></svg></span>進捗チェック</span>
+                <span class="case-visual__row"><span class="case-visual__tick" aria-hidden="true"><svg class="icon"><use href="#i-check"/></svg></span>写真の共有</span>
               </div>
               <figcaption class="case-visual__caption">イメージ図（実際の画面ではありません）</figcaption>
             </figure>
           </div>
 
-          <dl class="work__body">
+          <dl class="work__body" data-anim-group="up">
             <div class="work__item">
               <dt>課題</dt>
               <dd>従業員の予定表と作業チェックシートを紙で管理しており、これをデジタル化したいというご相談を受けました。</dd>
@@ -395,13 +464,13 @@
     <section class="section" id="strengths" aria-labelledby="strengths-title">
       <div class="container">
         <header class="section-head">
-          <p class="eyebrow"><span class="eyebrow__num">03</span>Strengths</p>
-          <h2 class="section-title" id="strengths-title"><span class="line"><span class="line__in"><span class="phrase">営業職で</span><span class="phrase">活かしたいこと</span></span></span></h2>
-          <p class="section-lead">これまでに経験したことと、入社後に取り組みたいことを分けて記載しています。</p>
+          <p class="eyebrow" data-anim="fade"><span class="eyebrow__num">03</span>Strengths</p>
+          <h2 class="section-title" id="strengths-title" data-anim="up"><span class="line"><span class="line__in"><span class="phrase">営業職で</span><span class="phrase">活かしたいこと</span></span></span></h2>
+          <p class="section-lead" data-anim="fade">これまでに経験したことと、入社後に取り組みたいことを分けて記載しています。</p>
         </header>
 
         <div class="strengths">
-          <article class="strength">
+          <article class="strength" data-anim="up">
             <h3 class="strength__title"><span class="strength__icon" aria-hidden="true"><svg class="icon"><use href="#i-chat"/></svg></span>顧客へのヒアリングと課題整理</h3>
             <div class="strength__cols">
               <div class="strength__col">
@@ -415,7 +484,7 @@
             </div>
           </article>
 
-          <article class="strength">
+          <article class="strength" data-anim="up">
             <h3 class="strength__title"><span class="strength__icon" aria-hidden="true"><svg class="icon"><use href="#i-bulb"/></svg></span>分かりやすい提案</h3>
             <div class="strength__cols">
               <div class="strength__col">
@@ -429,7 +498,7 @@
             </div>
           </article>
 
-          <article class="strength">
+          <article class="strength" data-anim="up">
             <h3 class="strength__title"><span class="strength__icon" aria-hidden="true"><svg class="icon"><use href="#i-chart"/></svg></span>業務改善の視点</h3>
             <div class="strength__cols">
               <div class="strength__col">
@@ -443,7 +512,7 @@
             </div>
           </article>
 
-          <article class="strength">
+          <article class="strength" data-anim="up">
             <h3 class="strength__title"><span class="strength__icon" aria-hidden="true"><svg class="icon"><use href="#i-spark"/></svg></span>AIを使って提案内容を具体化する力</h3>
             <div class="strength__cols">
               <div class="strength__col">
@@ -465,11 +534,11 @@
       <div class="section__bg" aria-hidden="true"></div>
       <div class="container">
         <header class="section-head">
-          <p class="eyebrow"><span class="eyebrow__num">04</span>Leafworks</p>
-          <h2 class="section-title" id="leafworks-title"><span class="line"><span class="line__in"><span class="phrase">リーフワークスで</span><span class="phrase">取り組みたいこと</span></span></span></h2>
+          <p class="eyebrow" data-anim="fade"><span class="eyebrow__num">04</span>Leafworks</p>
+          <h2 class="section-title" id="leafworks-title" data-anim="up"><span class="line"><span class="line__in"><span class="phrase">リーフワークスで</span><span class="phrase">取り組みたいこと</span></span></span></h2>
         </header>
 
-        <div class="source-box">
+        <div class="source-box" data-anim="up">
           <p class="source-box__head">募集要項で確認した内容（法人営業・サポート）</p>
           <ul>
             <li>法人企業を対象に、アフィリエイトシステムを中心としたクラウドサービスを提案・販売する仕事</li>
@@ -479,7 +548,7 @@
           <p class="source-box__cite">出典：<a href="https://www.leafworks.jp/recruit/job/02-01.html" target="_blank" rel="noopener">株式会社リーフワークス 採用情報「法人営業・サポート」<span class="visually-hidden">（新しいタブで開きます）</span></a></p>
         </div>
 
-        <div class="connect">
+        <div class="connect" data-anim-group="up">
           <div class="connect__item">
             <span class="connect__num" aria-hidden="true">01</span>
             <h3 class="connect__title">ヒアリングから提案、デモンストレーションまで</h3>
@@ -497,7 +566,7 @@
           </div>
         </div>
 
-        <p class="closing">入社後は、まず御社のサービスと、お客様の業務を正しく理解することから始めます。そのうえで、お客様の課題に合った提案ができる営業として、少しずつ役割を広げていきたいと考えています。</p>
+        <p class="closing" data-anim="fade">入社後は、まず御社のサービスと、お客様の業務を正しく理解することから始めます。そのうえで、お客様の課題に合った提案ができる営業として、少しずつ役割を広げていきたいと考えています。</p>
       </div>
     </section>
   </main>
