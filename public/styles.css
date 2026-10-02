@@ -163,31 +163,6 @@ h3 {
   word-break: auto-phrase;
 }
 
-/* ---------- Progress ---------- */
-
-.progress {
-  position: fixed;
-  inset: 0 0 auto;
-  z-index: 60;
-  height: 2px;
-  pointer-events: none;
-}
-
-.progress__bar {
-  display: block;
-  height: 100%;
-  background: linear-gradient(90deg, var(--blue-2), var(--sky));
-  transform: scaleX(0);
-  transform-origin: 0 50%;
-}
-
-@supports (animation-timeline: scroll()) {
-  .progress__bar {
-    animation: grow-x linear both;
-    animation-timeline: scroll(root);
-  }
-}
-
 /* ---------- Header ---------- */
 
 .site-header {
@@ -419,7 +394,6 @@ h3 {
   border-radius: 50%;
   filter: blur(70px);
   opacity: 0.55;
-  will-change: transform;
 }
 
 .blob--a {
@@ -428,7 +402,6 @@ h3 {
   right: -14vmax;
   top: -18vmax;
   background: radial-gradient(circle, #3f78b0, transparent 65%);
-  animation: drift-a 22s var(--ease-io) infinite alternate;
 }
 
 .blob--b {
@@ -437,7 +410,6 @@ h3 {
   left: -16vmax;
   bottom: -20vmax;
   background: radial-gradient(circle, #24477a, transparent 65%);
-  animation: drift-b 26s var(--ease-io) infinite alternate;
 }
 
 .blob--c {
@@ -447,7 +419,6 @@ h3 {
   top: 30%;
   background: radial-gradient(circle, rgba(141, 187, 232, 0.55), transparent 65%);
   opacity: 0.25;
-  animation: drift-c 18s var(--ease-io) infinite alternate;
 }
 
 .hero__arcs {
@@ -674,7 +645,6 @@ h3 {
 
 .orbit__rings {
   transform-origin: 210px 200px;
-  animation: spin 80s linear infinite;
 }
 
 .orbit__rings circle {
@@ -747,43 +717,6 @@ h3 {
 .orbit-core__x {
   color: var(--sky);
   font-weight: 400;
-}
-
-.scroll-cue {
-  position: absolute;
-  left: 50%;
-  bottom: 28px;
-  display: grid;
-  justify-items: center;
-  gap: 8px;
-  color: #a9b6cb;
-  font-family: var(--font-en);
-  font-size: 0.6875rem;
-  letter-spacing: 0.24em;
-  text-decoration: none;
-  text-transform: uppercase;
-  translate: -50% 0;
-}
-
-.scroll-cue__bar {
-  position: relative;
-  width: 1px;
-  height: 44px;
-  overflow: hidden;
-  background: rgba(255, 255, 255, 0.2);
-}
-
-.scroll-cue__bar::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: #fff;
-  transform: translateY(-100%);
-  animation: cue 2.2s var(--ease-io) infinite;
-}
-
-.scroll-cue:focus-visible {
-  outline-color: #fff;
 }
 
 /* ---------- Sections ---------- */
@@ -1147,14 +1080,6 @@ h3 {
   box-shadow: inset 3px 0 0 var(--blue-2);
 }
 
-@supports (animation-timeline: view()) {
-  .work-card__media > * {
-    animation: media-settle linear both;
-    animation-timeline: view();
-    animation-range: entry 0% cover 45%;
-  }
-}
-
 /* ---------- Works：詳細 ---------- */
 
 .work {
@@ -1217,7 +1142,6 @@ h3 {
   inset: 0;
   border-radius: 50%;
   background: currentColor;
-  animation: ping 2.4s ease-out infinite;
 }
 
 .status--progress {
@@ -1242,36 +1166,6 @@ h3 {
     grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
     gap: 64px;
     align-items: start;
-  }
-
-  .story__aside {
-    position: sticky;
-    top: calc(var(--header-h) + 40px);
-  }
-
-  .story__step {
-    display: grid;
-    align-content: center;
-    min-height: 48vh;
-  }
-
-  .story__step:first-child {
-    min-height: 40vh;
-    align-content: start;
-    padding-top: 24px;
-  }
-
-  .story__step:last-child {
-    min-height: 44vh;
-  }
-
-  .motion .story.is-live .story__step {
-    opacity: 0.4;
-    transition: opacity 0.6s var(--ease-out);
-  }
-
-  .motion .story.is-live .story__step.is-active {
-    opacity: 1;
   }
 }
 
@@ -1595,15 +1489,6 @@ h3 {
   opacity: 1;
   transform: none;
 }
-
-.stage[data-state="4"] .tile__bars i {
-  animation: bar-pulse 2.6s var(--ease-io) infinite;
-}
-
-.stage[data-state="4"] .tile__bars i:nth-child(2) { animation-delay: 0.15s; }
-.stage[data-state="4"] .tile__bars i:nth-child(3) { animation-delay: 0.3s; }
-.stage[data-state="4"] .tile__bars i:nth-child(4) { animation-delay: 0.45s; }
-.stage[data-state="4"] .tile__bars i:nth-child(5) { animation-delay: 0.6s; }
 
 /* リンクカード */
 .work__links {
@@ -2154,228 +2039,7 @@ h3 {
    アニメーション（画面表示・動きを許可している場合のみ）
    ========================================================== */
 
-@media screen and (prefers-reduced-motion: no-preference) {
-  /* ファーストビュー：行ごとにマスクから現れる */
-  .motion .hero__title .line__in {
-    transform: translateY(105%);
-    animation: line-up 1.05s var(--ease-out) forwards;
-    animation-delay: calc(0.12s + var(--i) * 0.11s);
-  }
-
-  .motion [data-hero] {
-    opacity: 0;
-    animation: fade-up 0.9s var(--ease-out) forwards;
-  }
-
-  .motion [data-hero="1"] { animation-delay: 0.05s; }
-  .motion [data-hero="2"] { animation-delay: 0.55s; }
-  .motion [data-hero="3"] { animation-delay: 0.68s; }
-
-  .motion .hero__title .line__in.hero__accent {
-    animation: line-up 1.05s var(--ease-out) forwards, shine 7s linear 1.6s infinite;
-    animation-delay: 0.34s, 1.6s;
-  }
-
-  .motion .orbit-core {
-    opacity: 0;
-    scale: 0.7;
-    animation: pop-in 0.9s var(--ease-out) 0.35s forwards, breathe 6s var(--ease-io) 1.4s infinite;
-  }
-
-  .motion .orbit-node {
-    opacity: 0;
-    animation: node-in 0.8s var(--ease-out) forwards, float 6s var(--ease-io) infinite;
-  }
-
-  .motion .orbit-node--1 { animation-delay: 0.6s, 1.4s; }
-  .motion .orbit-node--2 { animation-delay: 0.78s, 1.9s; }
-  .motion .orbit-node--3 { animation-delay: 0.96s, 2.4s; }
-
-  .motion .orbit__line {
-    stroke-dasharray: 300;
-    stroke-dashoffset: 300;
-    animation: draw 1.2s var(--ease-out) 0.7s forwards;
-  }
-
-  .motion .orbit__line--2 {
-    animation-delay: 0.95s;
-  }
-
-  .motion .orbit__line--3 {
-    stroke-dasharray: 4 8;
-    stroke-dashoffset: 0;
-    opacity: 0;
-    animation: fade-to 0.8s ease 1.3s forwards;
-  }
-
-  .motion .orbit__dot {
-    opacity: 0;
-    animation: fade-in 0.6s ease 1.6s forwards;
-  }
-
-  .motion .hero__arcs path {
-    stroke-dashoffset: 1800;
-    animation: draw 2.4s var(--ease-out) 0.2s forwards;
-  }
-
-  .motion .hero__arcs path:nth-child(2) { animation-delay: 0.4s; }
-  .motion .hero__arcs path:nth-child(3) { animation-delay: 0.6s; }
-
-  /* スクロールでファーストビューが穏やかに奥へ下がる（対応ブラウザのみ） */
-  @supports (animation-timeline: scroll()) {
-    .motion .hero__inner {
-      animation: hero-recede linear both;
-      animation-timeline: scroll(root);
-      animation-range: 0 90vh;
-    }
-  }
-
-  /* スクロールで現れる要素の初期状態（main.js が Web Animations API で表示する） */
-  .motion [data-reveal="fade"],
-  .motion [data-reveal="clip"],
-  .motion [data-reveal-group] > * {
-    opacity: 0;
-  }
-
-  .motion [data-reveal="mask"] {
-    transform: translateY(105%);
-  }
-
-  .motion [data-reveal="draw"] {
-    opacity: 0;
-  }
-
-  .motion [data-reveal="draw"]::before {
-    transform: scaleX(0);
-    transition: transform 1s var(--ease-out) 0.15s;
-  }
-
-  .motion [data-reveal="draw"].is-in::before {
-    transform: scaleX(1);
-  }
-
-  .motion [data-reveal].is-in,
-  .motion [data-reveal-group] > .is-in {
-    opacity: 1;
-    transform: none;
-    clip-path: none;
-  }
-
-  /* 管工事の図：見えたら紙とスマホがそれぞれ動く */
-  .motion .case-visual .case-visual__paper,
-  .motion .case-visual .case-visual__phone,
-  .motion .case-visual .case-visual__flow {
-    transition: transform 1s var(--ease-out), opacity 0.8s var(--ease-out);
-  }
-
-  .motion .case-visual:not(.is-in) .case-visual__paper {
-    transform: translateX(-18%);
-    opacity: 0;
-  }
-
-  .motion .case-visual:not(.is-in) .case-visual__phone {
-    transform: translateY(16%);
-    opacity: 0;
-  }
-
-  .motion .case-visual:not(.is-in) .case-visual__flow {
-    transform: scale(0.6);
-    opacity: 0;
-  }
-
-  .motion .case-visual .case-visual__phone { transition-delay: 0.35s; }
-  .motion .case-visual .case-visual__flow { transition-delay: 0.2s; }
-}
-
 /* ---------- Keyframes ---------- */
-
-@keyframes line-up {
-  to { transform: translateY(0); }
-}
-
-@keyframes fade-up {
-  from { opacity: 0; transform: translateY(18px); }
-  to { opacity: 1; transform: none; }
-}
-
-@keyframes fade-in {
-  to { opacity: 1; }
-}
-
-@keyframes fade-to {
-  to { opacity: 0.45; }
-}
-
-@keyframes draw {
-  to { stroke-dashoffset: 0; }
-}
-
-@keyframes pop-in {
-  to { opacity: 1; scale: 1; }
-}
-
-@keyframes node-in {
-  from { opacity: 0; transform: translateY(12px); }
-  to { opacity: 1; transform: none; }
-}
-
-@keyframes float {
-  0%, 100% { translate: -50% -50%; }
-  50% { translate: -50% calc(-50% - 6px); }
-}
-
-@keyframes breathe {
-  0%, 100% { scale: 1; }
-  50% { scale: 1.05; }
-}
-
-@keyframes spin {
-  to { transform: rotate(360deg); }
-}
-
-@keyframes drift-a {
-  to { transform: translate(-8vmax, 6vmax) scale(1.08); }
-}
-
-@keyframes drift-b {
-  to { transform: translate(7vmax, -5vmax) scale(1.12); }
-}
-
-@keyframes drift-c {
-  to { transform: translate(-6vmax, 4vmax) scale(0.9); }
-}
-
-@keyframes shine {
-  to { background-position: -220% 0; }
-}
-
-@keyframes cue {
-  0% { transform: translateY(-100%); }
-  60%, 100% { transform: translateY(100%); }
-}
-
-@keyframes ping {
-  0% { transform: scale(1); opacity: 0.55; }
-  80%, 100% { transform: scale(2.6); opacity: 0; }
-}
-
-@keyframes grow-x {
-  to { transform: scaleX(1); }
-}
-
-@keyframes hero-recede {
-  to { opacity: 0.35; translate: 0 -48px; scale: 0.98; }
-}
-
-@keyframes media-settle {
-  from { scale: 1.12; }
-  to { scale: 1; }
-}
-
-@keyframes bar-pulse {
-  0%, 100% { transform: scaleY(1); }
-  50% { transform: scaleY(0.82); }
-}
 
 /* ---------- 動きを減らす設定 ---------- */
 
@@ -2431,9 +2095,7 @@ h3 {
 
   .site-header,
   .skip-link,
-  .progress,
   .hero__actions,
-  .scroll-cue,
   .hero__visual,
   .hero__bg,
   .section__bg,

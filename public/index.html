@@ -16,15 +16,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap">
   <link rel="stylesheet" href="styles.css">
-  <script>
-    // JS が動き、動きを減らす設定でない場合だけアニメーション用の初期状態を使う
-    (function (d) {
-      d.classList.add("js");
-      var ok = "IntersectionObserver" in window && "animate" in Element.prototype &&
-        !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-      if (ok) d.classList.add("motion");
-    })(document.documentElement);
-  </script>
+  <script>document.documentElement.classList.add("js");</script>
   <script src="main.js" defer></script>
 </head>
 <body>
@@ -50,7 +42,6 @@
   </svg>
 
   <a class="skip-link" href="#main">本文へ移動</a>
-  <div class="progress" aria-hidden="true"><span class="progress__bar"></span></div>
 
   <header class="site-header" id="site-header">
     <div class="container site-header__inner">
@@ -87,17 +78,17 @@
 
       <div class="container hero__inner">
         <div class="hero__content">
-          <p class="hero__label" data-hero="1">営業職応募ポートフォリオ</p>
+          <p class="hero__label">営業職応募ポートフォリオ</p>
           <h1 class="hero__title" id="hero-title">
-            <span class="line"><span class="line__in" style="--i:0">顧客の課題を、</span></span>
-            <span class="line"><span class="line__in" style="--i:1">提案から</span></span>
-            <span class="line"><span class="line__in hero__accent" style="--i:2">仕組みづくりまで。</span></span>
+            <span class="line"><span class="line__in">顧客の課題を、</span></span>
+            <span class="line"><span class="line__in">提案から</span></span>
+            <span class="line"><span class="line__in hero__accent">仕組みづくりまで。</span></span>
           </h1>
-          <div class="hero__meta" data-hero="2">
+          <div class="hero__meta">
             <p class="hero__name">山本 真樹<span class="hero__name-sub">滋賀県在住</span></p>
             <p class="hero__lead">お客様の困りごとを聞き、整理し、AIとWeb技術を使って解決策を形にする。これまでの取り組みと、営業職で活かしたいことをまとめました。</p>
           </div>
-          <div class="hero__actions" data-hero="3">
+          <div class="hero__actions">
             <a class="button" href="#works">実績を見る<svg class="icon" aria-hidden="true"><use href="#i-down"/></svg></a>
             <a class="text-button" href="#about">自己紹介へ<svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
           </div>
@@ -119,7 +110,6 @@
             <path class="orbit__line" d="M110 92 C 200 92, 300 120, 336 200"/>
             <path class="orbit__line orbit__line--2" d="M336 200 C 300 290, 200 312, 110 308"/>
             <path class="orbit__line orbit__line--3" d="M110 308 C 60 250, 60 150, 110 92"/>
-            <circle class="orbit__dot" r="4"><animateMotion dur="7s" repeatCount="indefinite" path="M110 92 C 200 92, 300 120, 336 200 C 300 290, 200 312, 110 308 C 60 250, 60 150, 110 92"/></circle>
           </svg>
           <div class="orbit-node orbit-node--1"><svg class="icon"><use href="#i-chat"/></svg><span>課題を聞く</span></div>
           <div class="orbit-node orbit-node--2"><svg class="icon"><use href="#i-bulb"/></svg><span>提案する</span></div>
@@ -127,26 +117,24 @@
           <div class="orbit-core"><span>AI</span><span class="orbit-core__x">×</span><span>Web</span></div>
         </figure>
       </div>
-
-      <a class="scroll-cue" href="#about"><span class="scroll-cue__text">Scroll</span><span class="scroll-cue__bar" aria-hidden="true"></span><span class="visually-hidden">自己紹介へ移動</span></a>
     </section>
 
     <!-- 2. 自己紹介 -->
     <section class="section" id="about" aria-labelledby="about-title">
       <div class="container">
         <header class="section-head">
-          <p class="eyebrow" data-reveal="draw"><span class="eyebrow__num">01</span>About</p>
-          <h2 class="section-title" id="about-title"><span class="line"><span class="line__in" data-reveal="mask">自己紹介</span></span></h2>
+          <p class="eyebrow"><span class="eyebrow__num">01</span>About</p>
+          <h2 class="section-title" id="about-title"><span class="line"><span class="line__in">自己紹介</span></span></h2>
         </header>
 
         <div class="about">
-          <div class="about__text prose" data-reveal="fade">
+          <div class="about__text prose">
             <p>2024年2月から株式会社システマックに勤務しています。仕事とは別に、個人で企業のホームページや業務アプリを制作してきました。</p>
             <p>制作では、AIを活用しながら、課題の整理から実装、公開後の改善までを一つの流れとして取り組んでいます。既存のお客様から、ホームページ制作に加えて「業務をデジタル化したい」と相談を受けたこともあります。</p>
             <p>お客様の困りごとを聞いて整理し、解決策を形にするまでに取り組んできた経験を、営業職としてお客様の課題に向き合う仕事に活かしたいと考えています。</p>
           </div>
 
-          <dl class="profile" aria-label="プロフィール" data-reveal-group="slide">
+          <dl class="profile" aria-label="プロフィール">
             <div class="profile__row">
               <dt>氏名</dt>
               <dd>山本 真樹</dd>
@@ -166,8 +154,8 @@
           </dl>
         </div>
 
-        <h3 class="sub-title" data-reveal="fade">取り組み方</h3>
-        <ol class="flow" aria-label="課題解決の進め方" data-reveal-group="pop">
+        <h3 class="sub-title">取り組み方</h3>
+        <ol class="flow" aria-label="課題解決の進め方">
           <li class="flow__step">
             <span class="flow__icon" aria-hidden="true"><svg class="icon"><use href="#i-chat"/></svg></span>
             <span class="flow__num">STEP 1</span>
@@ -200,13 +188,13 @@
     <section class="section section--works" id="works" aria-labelledby="works-title">
       <div class="container">
         <header class="section-head">
-          <p class="eyebrow" data-reveal="draw"><span class="eyebrow__num">02</span>Works</p>
-          <h2 class="section-title" id="works-title"><span class="line"><span class="line__in" data-reveal="mask">実績紹介</span></span></h2>
-          <p class="section-lead" data-reveal="fade">それぞれ「課題」「提案・制作したもの」「自分の担当」「現在の状況」の順にまとめています。効果がまだ確認できていないものは、成果として記載していません。</p>
+          <p class="eyebrow"><span class="eyebrow__num">02</span>Works</p>
+          <h2 class="section-title" id="works-title"><span class="line"><span class="line__in">実績紹介</span></span></h2>
+          <p class="section-lead">それぞれ「課題」「提案・制作したもの」「自分の担当」「現在の状況」の順にまとめています。効果がまだ確認できていないものは、成果として記載していません。</p>
         </header>
 
         <!-- 実績の目次カード -->
-        <ul class="work-index" aria-label="実績一覧" data-reveal-group="rise">
+        <ul class="work-index" aria-label="実績一覧">
           <li>
             <a class="work-card" href="#work-kenbei">
               <span class="work-card__media work-card__media--kenbei" aria-hidden="true">
@@ -251,7 +239,7 @@
 
         <!-- KENBEI：固定した図と、スクロールで切り替わる説明 -->
         <article class="work story" id="work-kenbei" aria-labelledby="work-kenbei-title">
-          <header class="work__header" data-reveal="fade">
+          <header class="work__header">
             <p class="work__cat">自社開発サービス／建設業向け</p>
             <h3 class="work__title" id="work-kenbei-title">KENBEI</h3>
             <p class="work__summary">建設現場向けの管理サービス</p>
@@ -320,7 +308,7 @@
             </dl>
           </div>
 
-          <div class="work__links" data-reveal-group="rise">
+          <div class="work__links">
             <a class="link-card" href="https://app.kenbei.jp" target="_blank" rel="noopener">
               <span class="link-card__label">公開URL</span>
               <span class="link-card__url">https://app.kenbei.jp</span>
@@ -340,14 +328,14 @@
         <!-- 管工事会社向け業務アプリ -->
         <article class="work work--case" id="work-pipe" aria-labelledby="work-pipe-title">
           <div class="case__top">
-            <header class="work__header" data-reveal="fade">
+            <header class="work__header">
               <p class="work__cat">受託制作／匿名の事例</p>
               <h3 class="work__title" id="work-pipe-title"><span class="phrase">管工事会社向けの</span><span class="phrase">業務アプリ</span></h3>
               <p class="work__summary">紙の予定表とチェックシートのデジタル化</p>
               <p class="status status--plan"><span class="status__dot" aria-hidden="true"></span>試用予定</p>
             </header>
 
-            <figure class="case-visual" data-reveal="clip" aria-label="紙の予定表とチェックシートを、スマートフォンで確認できるアプリに置き換えるイメージ図">
+            <figure class="case-visual" aria-label="紙の予定表とチェックシートを、スマートフォンで確認できるアプリに置き換えるイメージ図">
               <div class="case-visual__paper" aria-hidden="true">
                 <span class="case-visual__ttl">予定表（紙）</span>
                 <i></i><i></i><i></i><i></i>
@@ -363,7 +351,7 @@
             </figure>
           </div>
 
-          <dl class="work__body" data-reveal-group="fade">
+          <dl class="work__body">
             <div class="work__item">
               <dt>課題</dt>
               <dd>従業員の予定表と作業チェックシートを紙で管理しており、これをデジタル化したいというご相談を受けました。</dd>
@@ -411,13 +399,13 @@
     <section class="section" id="strengths" aria-labelledby="strengths-title">
       <div class="container">
         <header class="section-head">
-          <p class="eyebrow" data-reveal="draw"><span class="eyebrow__num">03</span>Strengths</p>
-          <h2 class="section-title" id="strengths-title"><span class="line"><span class="line__in" data-reveal="mask"><span class="phrase">営業職で</span><span class="phrase">活かしたいこと</span></span></span></h2>
-          <p class="section-lead" data-reveal="fade">これまでに経験したことと、入社後に取り組みたいことを分けて記載しています。</p>
+          <p class="eyebrow"><span class="eyebrow__num">03</span>Strengths</p>
+          <h2 class="section-title" id="strengths-title"><span class="line"><span class="line__in"><span class="phrase">営業職で</span><span class="phrase">活かしたいこと</span></span></span></h2>
+          <p class="section-lead">これまでに経験したことと、入社後に取り組みたいことを分けて記載しています。</p>
         </header>
 
         <div class="strengths">
-          <article class="strength" data-reveal="fade">
+          <article class="strength">
             <h3 class="strength__title"><span class="strength__icon" aria-hidden="true"><svg class="icon"><use href="#i-chat"/></svg></span>顧客へのヒアリングと課題整理</h3>
             <div class="strength__cols">
               <div class="strength__col">
@@ -431,7 +419,7 @@
             </div>
           </article>
 
-          <article class="strength" data-reveal="fade">
+          <article class="strength">
             <h3 class="strength__title"><span class="strength__icon" aria-hidden="true"><svg class="icon"><use href="#i-bulb"/></svg></span>分かりやすい提案</h3>
             <div class="strength__cols">
               <div class="strength__col">
@@ -445,7 +433,7 @@
             </div>
           </article>
 
-          <article class="strength" data-reveal="fade">
+          <article class="strength">
             <h3 class="strength__title"><span class="strength__icon" aria-hidden="true"><svg class="icon"><use href="#i-chart"/></svg></span>業務改善の視点</h3>
             <div class="strength__cols">
               <div class="strength__col">
@@ -459,7 +447,7 @@
             </div>
           </article>
 
-          <article class="strength" data-reveal="fade">
+          <article class="strength">
             <h3 class="strength__title"><span class="strength__icon" aria-hidden="true"><svg class="icon"><use href="#i-spark"/></svg></span>AIを使って提案内容を具体化する力</h3>
             <div class="strength__cols">
               <div class="strength__col">
@@ -481,11 +469,11 @@
       <div class="section__bg" aria-hidden="true"></div>
       <div class="container">
         <header class="section-head">
-          <p class="eyebrow" data-reveal="draw"><span class="eyebrow__num">04</span>Leafworks</p>
-          <h2 class="section-title" id="leafworks-title"><span class="line"><span class="line__in" data-reveal="mask"><span class="phrase">リーフワークスで</span><span class="phrase">取り組みたいこと</span></span></span></h2>
+          <p class="eyebrow"><span class="eyebrow__num">04</span>Leafworks</p>
+          <h2 class="section-title" id="leafworks-title"><span class="line"><span class="line__in"><span class="phrase">リーフワークスで</span><span class="phrase">取り組みたいこと</span></span></span></h2>
         </header>
 
-        <div class="source-box" data-reveal="fade">
+        <div class="source-box">
           <p class="source-box__head">募集要項で確認した内容（法人営業・サポート）</p>
           <ul>
             <li>法人企業を対象に、アフィリエイトシステムを中心としたクラウドサービスを提案・販売する仕事</li>
@@ -495,7 +483,7 @@
           <p class="source-box__cite">出典：<a href="https://www.leafworks.jp/recruit/job/02-01.html" target="_blank" rel="noopener">株式会社リーフワークス 採用情報「法人営業・サポート」<span class="visually-hidden">（新しいタブで開きます）</span></a></p>
         </div>
 
-        <div class="connect" data-reveal-group="rise">
+        <div class="connect">
           <div class="connect__item">
             <span class="connect__num" aria-hidden="true">01</span>
             <h3 class="connect__title">ヒアリングから提案、デモンストレーションまで</h3>
@@ -513,7 +501,7 @@
           </div>
         </div>
 
-        <p class="closing" data-reveal="fade">入社後は、まず御社のサービスと、お客様の業務を正しく理解することから始めます。そのうえで、お客様の課題に合った提案ができる営業として、少しずつ役割を広げていきたいと考えています。</p>
+        <p class="closing">入社後は、まず御社のサービスと、お客様の業務を正しく理解することから始めます。そのうえで、お客様の課題に合った提案ができる営業として、少しずつ役割を広げていきたいと考えています。</p>
       </div>
     </section>
   </main>
